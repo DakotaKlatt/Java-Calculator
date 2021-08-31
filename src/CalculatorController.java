@@ -1,4 +1,9 @@
 public class CalculatorController {
+    /*
+        CalculationController manages the communication between the calculatorView and
+        the Calculator(Model).
+    */
+
     private CalculatorView calcView;
     private Calculator calculator;
 
@@ -7,7 +12,8 @@ public class CalculatorController {
         this.calcView = calcView;
         this.calculator = calculator;
 
-
+        //get a button from the View, Set the action listener with a listener created in this Controller.
+        //This is done to allow for the controller to have access to the listener
         this.calcView.getButton("0").addActionListener(e ->valueButtonListener("0"));
         this.calcView.getButton("1").addActionListener(e ->valueButtonListener("1"));
         this.calcView.getButton("2").addActionListener(e ->valueButtonListener("2"));
@@ -24,6 +30,7 @@ public class CalculatorController {
         this.calcView.getButton("divide").addActionListener(e ->functionButtonListener("divide"));
         this.calcView.getButton("multiply").addActionListener(e ->functionButtonListener("multiply"));
         this.calcView.getButton("equals").addActionListener(e ->functionButtonListener("equals"));
+        this.calcView.getButton("posNeg").addActionListener(e ->functionButtonListener("posNeg"));
         this.calcView.getButton("clear").addActionListener(e ->functionButtonListener("clear"));
 
     }
@@ -33,6 +40,7 @@ public class CalculatorController {
         this.calcView.setValue(calculator.getValue());
 
     }
+
     private void  functionButtonListener(String value) {
         this.calculator.action(value);
         this.calcView.setValue(calculator.getValue());
